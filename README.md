@@ -12,7 +12,7 @@ PocketPath helps users understand their spending habits, control unnecessary exp
 
 ## Project Objectives
 
-- Help users manage their weekly or monthly budgets.
+- Help users manage their weekly budgets.
 
 - Track income and daily expenses.
 
