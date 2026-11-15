@@ -52,7 +52,6 @@ The project follows a layered structure:
 ## Project Structure
 ```
 pocket_path/
-
 lib/
 ├── model/
 ├── service/
