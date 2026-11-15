@@ -6,7 +6,7 @@ Plan smarter. Spend better.
 
 PocketPath is an offline personal budgeting mobile application designed to help students and individuals manage their money more effectively.
 
-The application allows users to set weekly or monthly budgets, record income and expenses, plan upcoming purchases, and track savings goals. It also calculates recommended daily spending limits and alerts users when their daily expenses exceed their budget.
+The application allows users to set weekly budgets, record income and expenses, plan upcoming purchases, and track savings goals. It also calculates recommended daily spending limits and alerts users when their daily expenses exceed their budget.
 
 PocketPath helps users understand their spending habits, control unnecessary expenses, and make better financial decisions.
 
