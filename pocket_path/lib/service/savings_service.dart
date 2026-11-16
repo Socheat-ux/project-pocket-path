@@ -1,8 +1,9 @@
-import 'package:pocket_path/model/savings_goal.dart';
+import '../model/budget_setup.dart';
+import '../model/savings_goal.dart';
 
 class SavingsService {
-  final SavingsGoal setSavingGoal (
-    Budget budget, {
+  SavingsGoal setSavingGoal (
+    BudgetSetup budget, {
       required double amount,
       required SavingsPeroid period
   }) {
@@ -10,16 +11,16 @@ class SavingsService {
       throw Exception("Amount must be greater than 0!");
     }
 
-    final goal = SavingsGoal(amount: amount, peroid: peroid);
+    final goal = SavingsGoal(amount: amount, peroid: period);
 
     if (goal.weeklyAmount + budget.plannedTotal > budget.weeklyAmount) {
       throw Exception("Saving goal exceed the available weekly budget!");
     }
 
-    budget.SavingsGoal.goal;
+    budget.savingsGoal = goal;
     return goal;
   }
 
-  double spenableAfterSaving (Budget budget) => budget.weeklyAmount - budget.weeklySaving;
+  double spenableAfterSaving (BudgetSetup budget) => budget.weeklyAmount - budget.weeklySaving;
 
 }

@@ -1,8 +1,10 @@
-import 'package:pocket_path/model/planned_purchase.dart';
+import '../model/budget_setup.dart';
+import '../model/expense.dart';
+import '../model/planned_purchase.dart';
 
 class PlannedPurchaseService {
   PlannedPurchase addPlannedPurchase(
-    Budget budget, {
+    BudgetSetup budget, {
       required String name,
       required double amount,
       required DateTime plannedDate
@@ -32,12 +34,12 @@ class PlannedPurchaseService {
       plannedDate: plannedDate
     );
 
-    budget.planned.add(planned);
+    budget.plannedPurchases.add(planned);
     return planned;
   }
 
-  Expense markPaid(Budget budget, Stirng plannedId) {
-    final matches = budget.PlannedPurchase.where((p) => p.id == plannedId);
+  Expense markPaid(BudgetSetup budget, String plannedId) {
+    final matches = budget.plannedPurchases.where((p) => p.id == plannedId);
 
     if (matches.isEmpty) {
       throw Exception("Planned Purchase not found!");
@@ -58,7 +60,7 @@ class PlannedPurchaseService {
       note : planned.name
     );
 
-    budget.expense.add(expense);
+    budget.expenses.add(expense);
     return expense;
   }
 }

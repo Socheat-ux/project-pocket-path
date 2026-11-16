@@ -1,0 +1,1 @@
+DateTime dateOnly(DateTime d) => DateTime.utc(d.year, d.month, d.day);

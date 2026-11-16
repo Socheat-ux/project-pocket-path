@@ -1,5 +1,6 @@
-
 import 'package:flutter_test/flutter_test.dart';
+import 'package:pocket_path/model/budget_setup.dart';
+import 'package:pocket_path/model/savings_goal.dart';
 import 'package:pocket_path/service/daily_limit_service.dart';
 import 'package:pocket_path/service/planned_purchase_service.dart';
 import 'package:pocket_path/service/savings_service.dart';
@@ -8,7 +9,7 @@ void main() {
   test('normal: 70 / 7 = 10', () {
     final DailyLimitService limitService = DailyLimitService();
 
-    final Budget budget = limitService.createBudget(
+    final BudgetSetup budget = limitService.createBudget(
         weeklyAmount: 70, numberOfDay: 7, startDate: DateTime(2026, 11, 16));
 
     expect(limitService.calculateDailyLimit(budget), 10);
@@ -33,7 +34,7 @@ void main() {
   test('boundary: 1 day, whole budget is the limit', () {
     final DailyLimitService limitService = DailyLimitService();
 
-    final Budget budget = limitService.createBudget(
+    final BudgetSetup budget = limitService.createBudget(
         weeklyAmount: 70, numberOfDay: 1, startDate: DateTime(2026, 11, 16));
 
     expect(limitService.calculateDailyLimit(budget), 70);
@@ -45,9 +46,9 @@ void main() {
     final PlannedPurchaseService plannedService = PlannedPurchaseService();
     final DateTime start = DateTime(2026, 11, 16);
 
-    final Budget budget = limitService.createBudget(weeklyAmount: 70, numberOfDay: 7, startDate: start);
+    final BudgetSetup budget = limitService.createBudget(weeklyAmount: 70, numberOfDay: 7, startDate: start);
 
-    savingsService.setSavingGoal(budget, amount: 14, period: SavingsPeriod.weekly);
+    savingsService.setSavingGoal(budget, amount: 14, period: SavingsPeroid.weekly);
     plannedService.addPlannedPurchase(budget, name: 'Book', amount: 14, plannedDate: start);
 
     expect(limitService.calculateSafeDailyLimit(budget), 6);

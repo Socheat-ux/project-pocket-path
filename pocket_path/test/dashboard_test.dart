@@ -1,6 +1,6 @@
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pocket_path/model/daily_budget_summary.dart';
+import 'package:pocket_path/model/budget_setup.dart';
 import 'package:pocket_path/service/daily_limit_service.dart';
 import 'package:pocket_path/service/dashboard_service.dart';
 
@@ -9,7 +9,7 @@ void main() {
     final DashboardService dashboardService = DashboardService();
     final DailyLimitService limitService = DailyLimitService();
     final DateTime start = DateTime(2020, 11, 10);
-    final Budget budget = limitService.createBudget(
+    final BudgetSetup budget = limitService.createBudget(
         weeklyAmount: 70, numberOfDay: 7, startDate: start);
     
     dashboardService.addExpense(budget, amount: 4, date: start);
@@ -19,7 +19,7 @@ void main() {
 
     expect(summary.spendToday, 7);
     expect(summary.dailyLimit, 10);
-    expect(summary.remainingWeeklyBudget, 63);
+    expect(summary.remainWeeklyBudget, 63);
     expect(summary.isOverSpending, false);
   });
 
@@ -27,10 +27,10 @@ void main() {
     final DashboardService dashboardService = DashboardService();
     final DailyLimitService limitService = DailyLimitService();
     final DateTime start = DateTime(2020, 11, 10);
-    final Budget budget = limitService.createBudget(
+    final BudgetSetup budget = limitService.createBudget(
         weeklyAmount: 70, numberOfDay: 7, startDate: start);
 
-    dashboardService.addExpense(amount: 10, date: start);
+    dashboardService.addExpense(budget, amount: 10, date: start);
 
     expect(dashboardService.getDashboard(budget, start).isOverSpending, false);
   });
@@ -39,10 +39,10 @@ void main() {
     final DashboardService dashboardService = DashboardService();
     final DailyLimitService limitService = DailyLimitService();
     final DateTime start = DateTime(2020, 11, 10);
-    final Budget budget = limitService.createBudget(
+    final BudgetSetup budget = limitService.createBudget(
         weeklyAmount: 70, numberOfDay: 7, startDate: start);
 
-    dashboardService.addExpense(amount: 10.5, date: start);
+    dashboardService.addExpense(budget, amount: 10.5, date: start);
 
     expect(dashboardService.getDashboard(budget, start).isOverSpending, true);
   });
@@ -51,11 +51,11 @@ void main() {
     final DashboardService dashboardService = DashboardService();
     final DailyLimitService limitService = DailyLimitService();
     final DateTime start = DateTime(2020, 11, 10);
-    final Budget budget = limitService.createBudget(
+    final BudgetSetup budget = limitService.createBudget(
         weeklyAmount: 70, numberOfDay: 7, startDate: start);
 
     expect(
-      () => dashboardService.addExpense(amount: 5, date: start.add(Duration(days: 7))),
+      () => dashboardService.addExpense(budget, amount: 5, date: start.add(Duration(days: 7))),
       throwsException
     );
   });
@@ -64,11 +64,11 @@ void main() {
     final DashboardService dashboardService = DashboardService();
     final DailyLimitService limitService = DailyLimitService();
     final DateTime start = DateTime(2020, 11, 10);
-    final Budget budget = limitService.createBudget(
+    final BudgetSetup budget = limitService.createBudget(
         weeklyAmount: 70, numberOfDay: 7, startDate: start);
 
     expect(
-      () => dashboardService.addExpense(amount: 0, date: start),
+      () => dashboardService.addExpense(budget, amount: 0, date: start),
       throwsException
     );
   });

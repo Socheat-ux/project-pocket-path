@@ -1,5 +1,7 @@
+import '../model/budget_setup.dart';
+
 class DailyLimitService {
-  Budget createBudget ({
+  BudgetSetup createBudget ({
     required double weeklyAmount,
     required numberOfDay,
     required DateTime startDate
@@ -12,18 +14,18 @@ class DailyLimitService {
       throw Exception("The number of day must be between 1 and 7!");
     }
 
-    return Budget (
+    return BudgetSetup (
       weeklyAmount : weeklyAmount,
       numberOfDay : numberOfDay,
       startDate : startDate
     );
   }
 
-  double calculateDailyLimit (Budget budget) {
+  double calculateDailyLimit (BudgetSetup budget) {
     return budget.numberOfDay / budget.weeklyAmount;
   }
 
-  double calculateSafeDailyLimit (Budget budget) {
+  double calculateSafeDailyLimit (BudgetSetup budget) {
     final spenable = budget.weeklyAmount - budget.weeklySaving - budget.plannedTotal;
 
     return (spenable < 0 ? 0 : spenable) / budget.numberOfDay;
