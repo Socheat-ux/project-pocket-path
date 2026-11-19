@@ -22,7 +22,7 @@ class DailyLimitService {
   }
 
   double calculateDailyLimit (BudgetSetup budget) {
-    return budget.numberOfDay / budget.weeklyAmount;
+    return budget.weeklyAmount / budget.numberOfDay;
   }
 
   double calculateSafeDailyLimit (BudgetSetup budget) {

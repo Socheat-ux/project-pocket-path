@@ -47,7 +47,7 @@ class DashboardService {
       dailyLimit: limit, 
       remainWeeklyBudget: 
       budget.weeklyAmount - budget.weeklySaving, 
-      saftToSpend: spenable - budget.totalSpent, 
+      safeToSpend: spenable - budget.totalSpent, 
       isOverSpending: spendToday > limit
     );
 
